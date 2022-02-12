@@ -1,7 +1,8 @@
 import { Router } from "express";
+import * as toolsController from "@/controllers/toolsController";
 
 const router = Router();
 
-router.post("/tools");
+router.post("/", toolsController.createTool);
 
 export default router;
