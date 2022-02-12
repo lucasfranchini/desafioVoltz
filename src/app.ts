@@ -1,12 +1,12 @@
 import "@/setup";
 
-import errorHandlingMiddleware from "@/middlewares/errorHandlingMiddleware";
-import router from "@/routers";
-
 import express from "express";
 import "express-async-errors";
 import cors from "cors";
 import mongoose from "mongoose";
+
+import errorHandlingMiddleware from "@/middlewares/errorHandlingMiddleware";
+import router from "@/routers";
 
 const app = express();
 app.use(cors());
