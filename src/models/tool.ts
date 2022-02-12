@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface ToolInterface {
+export interface ToolInterface {
   title: String;
   link: String;
   description: String;
