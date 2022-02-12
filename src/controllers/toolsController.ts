@@ -15,3 +15,5 @@ export async function createTool(req: Request, res: Response) {
   const createdTool = await toolService.createTool(newTool);
   res.status(201).send(createdTool);
 }
+
+export async function getTools(req: Request, res: Response) {}
