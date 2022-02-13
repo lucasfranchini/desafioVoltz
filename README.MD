@@ -39,7 +39,7 @@ The following tools and frameworks were used in the construction of the project:
 make dev
 ```
 
-5. Finally access http://localhost:3000/routename changing 'routename' for the route you wanna call.
+5. Finally call http://localhost:3000/routename changing 'routename' for the route you wanna call.
 
 obs: the env `DATABASE_URL` uses the format:
 
@@ -49,7 +49,7 @@ obs: the env `DATABASE_URL` uses the format:
 
 where `host` and `port` are fixed values defined in docker-compose and `username` and `password` are the same values used in the environment variables `MONGODB_USER` and `MONGODB_PASSWORD`.
 
-`host` is the name of the doceker database container (mongodb) and `port` is the internal database port used (27017)
+`host` is the name of the docker database container (mongodb) and `port` is the internal database port used (27017)
 
 ## How to run tests
 
@@ -70,7 +70,7 @@ obs: the env `DATABASE_URL` uses the format:
 
 where `host` and `port` are fixed values defined in docker-compose and `username` and `password` are the same values used in the environment variables `MONGODB_USER` and `MONGODB_PASSWORD`.
 
-`host` is the name of the doceker database container (mongodb_test) and `port` is the internal database port used (27017)
+`host` is the name of the docker database container (mongodb_test) and `port` is the internal database port used (27017)
 
 ## avaliable routes
 
