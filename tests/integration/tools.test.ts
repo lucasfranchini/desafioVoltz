@@ -47,4 +47,11 @@ describe("POST /tools", () => {
     const res = await agent.post("/tools").send(tool);
     expect(res.body).toMatchObject({ ...tool, id: expect.any(String) });
   });
+
+  it("should return status 422 for invalid params", async () => {
+    const tool = createToolObject();
+    tool.link = "invalid";
+    const res = await agent.post("/tools").send(tool);
+    expect(res.status).toBe(httpStatus.UNPROCESSABLE_ENTITY);
+  });
 });
