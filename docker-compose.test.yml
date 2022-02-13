@@ -21,13 +21,7 @@ services:
     restart: unless-stopped
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-    stdin_open: true
-    tty: true
-    volumes:
-      - .:/usr/src/voltz-challenge
-      - ./node_modules:/usr/src/voltz-challenge/node_modules
     environment:
       NODE_ENV: test
 volumes:
   db:
-  node_modules:

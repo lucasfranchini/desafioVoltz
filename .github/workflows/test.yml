@@ -9,11 +9,12 @@ on:
 jobs:
   test:
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [16.x]
     steps:
       - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
       - name: run tests
         env:
           DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
@@ -22,4 +23,6 @@ jobs:
           MONGODB_PASSWORD: ${{ secrets.TEST_MONGODB_PASSWORD }}
           MONGODB_LOCAL_PORT: ${{ secrets.TEST_MONGODB_LOCAL_PORT }}
           NODE_LOCAL_PORT: ${{ secrets.TEST_NODE_LOCAL_PORT }}
-        run: make test
+        run: |
+          make test-build
+          make test
