@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: voltzChallenge
   description: documentation for the routes in voltz challenge
-  version: "0.1"
+  version: "0.2"
 servers:
   - url: http://localhost:3000
 paths:
@@ -71,6 +71,7 @@ paths:
                       "description":"lucas",
                       "tags": ["teste1","teste2"]
                   }
+                description: "valid body for post route"
               "1":
                 value: |-
                   {
@@ -79,6 +80,7 @@ paths:
                       "description":"lucas",
                       "tags": ["teste1","teste2"]
                   }
+                description: "invalid body for post route"
       responses:
         "201":
           description: successfull creates a new tool
@@ -124,7 +126,7 @@ paths:
                   details:
                     type: string
               examples:
-                "1":
+                "0":
                   value: |-
                     {
                         "message": "Invalid body",
@@ -140,11 +142,17 @@ paths:
       parameters:
         - name: id
           in: path
-          description: User ID
+          description: must be a string of 12 bytes or a string of 24 hex characters
           required: true
           schema:
-            type: integer
-            format: int64
+            type: string
+          examples:
+            "0":
+              value: "6208405cc5ed489059e28f91"
+              description: "valid id"
+            "1":
+              value: "invalid"
+              description: "invalid id"
       responses:
         "200":
           description: dool deleted successfully
@@ -163,6 +171,25 @@ paths:
                     {
                         "message": "Invalid id: 6208405cc5ed489059e28f91 Object not found"
                     }
+        "422":
+          description: the id passed not match the objectId format for mongoDB
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                "0":
+                  value: |-
+                    {
+                        "message": "Invalid id",
+                        "details": [
+                            " id passed in must be a string of 12 bytes or a string of 24 hex characters"
+                        ]
+                    }
+
       servers:
         - url: http://localhost:3000
     servers:
