@@ -1,5 +1,5 @@
 import joi from "joi";
 
-const idSchema = joi.number().integer().positive().required();
+const idSchema = joi.string().required();
 
 export default idSchema;
