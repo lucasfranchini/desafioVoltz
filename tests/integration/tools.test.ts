@@ -55,3 +55,20 @@ describe("POST /tools", () => {
     expect(res.status).toBe(httpStatus.UNPROCESSABLE_ENTITY);
   });
 });
+
+describe("DELETE /tools/:id", () => {
+  it("should return status 200 for valid id", async () => {
+    const tool = await createToolInDatabase();
+    const res = await agent.delete(`/tools/${tool.id}`);
+    expect(res.status).toBe(httpStatus.OK);
+  });
+
+  it("should return status 422 for invalid params", async () => {
+    const res = await agent.delete("/tools/invalid");
+    expect(res.status).toBe(httpStatus.UNPROCESSABLE_ENTITY);
+  });
+  it("should return status 404 for not registered id", async () => {
+    const res = await agent.delete("/tools/6208405cc5ed489059e28f91");
+    expect(res.status).toBe(httpStatus.NOT_FOUND);
+  });
+});
