@@ -1,0 +1,169 @@
+openapi: 3.0.1
+info:
+  title: voltzChallenge
+  description: documentation for the routes in voltz challenge
+  version: "0.1"
+servers:
+  - url: http://localhost:3000
+paths:
+  /tools:
+    get:
+      description: gets all tools in database
+      responses:
+        "200":
+          description: an array containg an object for each tool
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  link:
+                    type: string
+                  description:
+                    type: string
+                  title:
+                    type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                "0":
+                  value: |-
+                    [{       
+                      "_id": "62083f38a41b944e3519ab33",
+                      "title": "lucasfranchini.a@gmail.com.br",
+                      "link": "google.com",
+                      "description": "lucas",
+                      "tags": [
+                        "teste1",
+                        "teste2"
+                      ]
+                    }]
+      servers:
+        - url: http://localhost:3000
+    post:
+      description: creates a new tool in the database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link:
+                  type: string
+                description:
+                  type: string
+                title:
+                  type: string
+                tags:
+                  type: array
+                  items:
+                    type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                      "title":"lucasfranchini.a@gmail.com.br",
+                      "link":"google.com",
+                      "description":"lucas",
+                      "tags": ["teste1","teste2"]
+                  }
+              "1":
+                value: |-
+                  {
+                      "title":"lucasfranchini.a@gmail.com.br",
+                      "link":"google",
+                      "description":"lucas",
+                      "tags": ["teste1","teste2"]
+                  }
+      responses:
+        "201":
+          description: successfull creates a new tool
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  link:
+                    type: string
+                  description:
+                    type: string
+                  title:
+                    type: string
+                  tags:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                "0":
+                  value: |-
+                    {
+                      "title": "lucasfranchini.a@gmail.com.br",
+                      "link": "google.com",
+                      "description": "lucas",
+                      "tags": [
+                          "teste1",
+                          "teste2"
+                      ],
+                      "_id": "6208405cc5ed489059e28f91"
+                    }
+        "422":
+          description: one parameter isn't valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  details:
+                    type: string
+              examples:
+                "1":
+                  value: |-
+                    {
+                        "message": "Invalid body",
+                        "details": [
+                            "\"link\" must contain a valid domain name"
+                        ]
+                    }
+      servers:
+        - url: http://localhost:3000
+  /tools/{id}:
+    delete:
+      description: Deletes a tool in database
+      parameters:
+        - name: id
+          in: path
+          description: User ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: dool deleted successfully
+        "404":
+          description: there is no tool with the id selected
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                "0":
+                  value: |-
+                    {
+                        "message": "Invalid id: 6208405cc5ed489059e28f91 Object not found"
+                    }
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
