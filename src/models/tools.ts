@@ -14,7 +14,14 @@ const toolSchema = new mongoose.Schema(
     description: { type: String, required: true },
     tags: [{ type: String, index: true }],
   },
-  { versionKey: false }
+  {
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+      transform: (doc: any, ret: any, options: any) => {
+        delete ret._id;
+      },
+    },
+  }
 );
-
 export const Tools = mongoose.model<ToolInterface>("Tools", toolSchema);
