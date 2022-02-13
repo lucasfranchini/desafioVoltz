@@ -5,3 +5,8 @@ export async function createTool(newTool: ToolInterface) {
   const retunedTool = createdTool.toObject({ versionKey: false });
   return retunedTool;
 }
+
+export async function getTools() {
+  const tools = await Tools.find().select("-__v");
+  return tools;
+}
