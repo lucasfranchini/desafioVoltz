@@ -1,7 +1,6 @@
 FROM node:16
-WORKDIR /src
+WORKDIR /usr/src/voltz-challenge
 COPY package.json .
+COPY package-lock.json .
 RUN npm install
-COPY nodemon.json .
-COPY . .
 CMD npm run dev
