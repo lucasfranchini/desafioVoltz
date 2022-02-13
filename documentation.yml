@@ -155,7 +155,7 @@ paths:
               description: "invalid id"
       responses:
         "200":
-          description: dool deleted successfully
+          description: tool deleted successfully
         "404":
           description: there is no tool with the id selected
           content:
