@@ -3,7 +3,10 @@ import httpStatus from "http-status";
 
 import app, { init } from "../../src/app";
 import { clearDatabase, endConnection } from "../utils/database";
-import { createToolInDatabase } from "../factories/toolsFactory";
+import {
+  createToolInDatabase,
+  createToolObject,
+} from "../factories/toolsFactory";
 
 const agent = supertest(app);
 
@@ -30,5 +33,18 @@ describe("GET /tools", () => {
     const res = await agent.get("/tools");
     console.log(tool);
     expect(res.body[0]).toMatchObject(tool);
+  });
+});
+
+describe("POST /tools", () => {
+  it("should return status 201 for valid params", async () => {
+    const tool = createToolObject();
+    const res = await agent.post("/tools").send(tool);
+    expect(res.status).toBe(httpStatus.CREATED);
+  });
+  it("should return an onbject containing all the tool data for valid params", async () => {
+    const tool = createToolObject();
+    const res = await agent.post("/tools").send(tool);
+    expect(res.body).toMatchObject({ ...tool, id: expect.any(String) });
   });
 });
