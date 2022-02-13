@@ -25,7 +25,6 @@ export async function getTools(req: Request, res: Response) {
 
 export async function deleteTool(req: Request, res: Response) {
   const { id } = req.params;
-  console.log(isValidObjectId(id));
   if (!isValidObjectId(id)) {
     throw new InvalidDataError("id", [
       " id passed in must be a string of 12 bytes or a string of 24 hex characters",
