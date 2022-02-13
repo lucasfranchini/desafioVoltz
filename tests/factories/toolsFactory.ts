@@ -12,5 +12,5 @@ export async function createTool() {
     tags,
     description: faker.lorem.words(),
   });
-  return newTool;
+  return newTool.toJSON();
 }
