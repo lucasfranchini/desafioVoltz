@@ -32,5 +32,6 @@ export async function deleteTool(req: Request, res: Response) {
       validation.error.details.map((error) => error.message)
     );
   }
+  await toolService.deleteTool(id);
   res.sendStatus(httpStatus.OK);
 }
