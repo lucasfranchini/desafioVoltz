@@ -33,7 +33,7 @@ paths:
                 "0":
                   value: |-
                     [{       
-                      "_id": "62083f38a41b944e3519ab33",
+                      "id": "62083f38a41b944e3519ab33",
                       "title": "lucasfranchini.a@gmail.com.br",
                       "link": "google.com",
                       "description": "lucas",
@@ -112,7 +112,7 @@ paths:
                           "teste1",
                           "teste2"
                       ],
-                      "_id": "6208405cc5ed489059e28f91"
+                      "id": "6208405cc5ed489059e28f91"
                     }
         "422":
           description: one parameter isn't valid
