@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:16 as build
 WORKDIR /usr/src/voltz-challenge
 COPY package.json .
 COPY package-lock.json .
