@@ -2,7 +2,7 @@
   "name": "voltz",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon",
     "test": "jest -i",
