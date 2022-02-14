@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon",
     "test": "jest -i",
-    "build": "tsc"
+    "build": "tsc",
+    "start": "NODE_ENV=production node ./dist/server.js"
   },
   "keywords": [],
   "author": "",
