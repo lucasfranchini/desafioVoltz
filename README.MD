@@ -16,6 +16,13 @@ Below are the implemented features:
 
 By using this app any user can list and manage the database tools.
 
+## available routes
+
+- GET /tools
+- POST /tools
+- DELETE /tools/{id}
+
+
 ## Technologies
 
 The following tools and frameworks were used in the construction of the project:<br>
@@ -74,12 +81,6 @@ obs: the env `DATABASE_URL` uses the format:
 where `host` and `port` are fixed values defined in docker-compose and `username` and `password` are the same values used in the environment variables `MONGODB_USER` and `MONGODB_PASSWORD`.
 
 `host` is the name of the docker database container (mongodb_test) and `port` is the internal database port used (27017)
-
-## avaliable routes
-
-- GET /tools
-- POST /tools
-- DELETE /tools/{id}
 
 ## scripts to make life easier
 
