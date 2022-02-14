@@ -2,7 +2,7 @@
 
 An API made for voltz company challenge.
 
-If you want to test the API routes ithout dowloading the repository there's a deploy in: \
+If you want to test the API routes without dowloading the repository there's a deploy in: \
 https://voltz-challenge-ocllxiksya-uc.a.run.app
 
 ## About
