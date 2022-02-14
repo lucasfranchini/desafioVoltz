@@ -1,23 +1,18 @@
 {
   "compilerOptions": {
-    "noImplicitAny": true,
+    "outDir": "dist",
+    "module": "commonjs",
+    "target": "es2019",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "outDir": "dist",
-    "sourceMap": true,
-    "target": "es6",
-    "module": "commonjs",
-    "baseUrl": ".",
+    "rootDirs": ["src", "tests"],
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"]
     },
-    "typeRoots": ["./src/@types", "./node_modules/@types"]
+    "plugins": [{ "transform": "typescript-transform-paths" }]
   },
-  "include": ["src"],
-  "plugins": [
-    {
-      "transform": "typescript-transform-paths"
-    }
-  ]
+  "include": ["src", "tests"],
+  "exclude": []
 }
