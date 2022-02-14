@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
-    "test": "jest -i"
+    "test": "jest -i",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
