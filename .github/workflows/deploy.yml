@@ -1,0 +1,34 @@
+name: deploy-voltz
+on:
+  push:
+    branches:
+      - main
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+  SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  SERVICE: voltz-challenge
+  REGION: us-central1
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.2.0
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          serice_account_key: ${{ env.SA_KEY }}
+      - name: push docker
+        run: gcloud auth configure-docker
+      - name: Build and push
+        run: |-
+          docker build -t gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} .
+          docker push gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
+      - name: deploy to cloud run
+        run: |-
+          gcloud run deploy ${{ env.SERVICE }} \
+            --region ${{ env.REGION }} \
+            --image gcr.io/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }} \
+            --platform "managed" \
+            --quiet
