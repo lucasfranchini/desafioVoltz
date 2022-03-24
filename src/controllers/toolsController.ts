@@ -23,6 +23,17 @@ export async function getTools(req: Request, res: Response) {
   res.send(tools);
 }
 
+export async function getTool(req: Request, res: Response) {
+  const { id } = req.params;
+  if (!isValidObjectId(id)) {
+    throw new InvalidDataError("id", [
+      " id passed in must be a string of 12 bytes or a string of 24 hex characters",
+    ]);
+  }
+  const tool = await toolService.getTool(id);
+  res.send(tool);
+}
+
 export async function deleteTool(req: Request, res: Response) {
   const { id } = req.params;
   if (!isValidObjectId(id)) {

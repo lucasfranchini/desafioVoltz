@@ -12,6 +12,14 @@ export async function getTools() {
   return tools;
 }
 
+export async function getTool(id: String) {
+  const tool = await Tools.findById(id);
+  if (!tool) {
+    throw new IdNotFoundError(id);
+  }
+  return tool;
+}
+
 export async function deleteTool(id: String) {
   const { deletedCount } = await Tools.deleteOne({ _id: id });
   if (deletedCount === 0) {
