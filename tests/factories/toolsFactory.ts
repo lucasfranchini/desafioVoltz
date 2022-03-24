@@ -14,7 +14,7 @@ export function createToolObject(): ToolInterface {
   }
   const newTool = {
     title: faker.name.title(),
-    link: faker.internet.domainName(),
+    link: faker.internet.url(),
     tags,
     description: faker.lorem.words(),
   };
