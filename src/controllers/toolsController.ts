@@ -4,6 +4,7 @@ import toolSchema from "@/schemas/toolSchema";
 import * as toolService from "@/services/toolService";
 import httpStatus from "http-status";
 import { isValidObjectId } from "mongoose";
+import fieldType from "@/Interfaces/fieldType";
 
 export async function createTool(req: Request, res: Response) {
   const newTool = req.body;
@@ -43,4 +44,15 @@ export async function deleteTool(req: Request, res: Response) {
   }
   await toolService.deleteTool(id);
   res.sendStatus(httpStatus.OK);
+}
+export async function searchTools(req: Request, res: Response) {
+  const { searchText, field }: { searchText: string; field: fieldType } =
+    req.body;
+  if (typeof searchText !== "string" || typeof field !== "string") {
+    throw new InvalidDataError("body", [
+      "search text and field must be a string",
+    ]);
+  }
+  const tools = await toolService.searchTools(searchText, field);
+  res.send(tools);
 }

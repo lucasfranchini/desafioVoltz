@@ -1,4 +1,5 @@
 import IdNotFoundError from "@/errors/idNotFoundError";
+import fieldType from "@/Interfaces/fieldType";
 import { ToolInterface, Tools } from "@/models/tools";
 
 export async function createTool(newTool: ToolInterface) {
@@ -25,4 +26,16 @@ export async function deleteTool(id: String) {
   if (deletedCount === 0) {
     throw new IdNotFoundError(id);
   }
+}
+
+export async function searchTools(searchText: string, field: fieldType) {
+  let tools: ToolInterface[] = [];
+  if (field === "all") {
+    tools = await Tools.find({ $text: { $search: searchText } });
+  } else if (field === "tags") {
+    tools = await Tools.find({ tags: searchText });
+  } else {
+    tools = await Tools.find({ $where: `this.${field} === '${searchText}'` });
+  }
+  return tools;
 }
