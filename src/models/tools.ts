@@ -24,5 +24,5 @@ const toolSchema = new mongoose.Schema(
     },
   }
 );
-toolSchema.indexes();
+toolSchema.index({ title: "text", tags: "text" });
 export const Tools = mongoose.model<ToolInterface>("Tools", toolSchema);
