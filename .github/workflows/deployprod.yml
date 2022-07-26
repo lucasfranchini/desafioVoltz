@@ -2,7 +2,7 @@ name: deploy-voltz-prod
 on:
   push:
     tags:
-      - "prod"
+      - prod*
 env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT }}
   SA_KEY: ${{ secrets.GCP_SA_KEY }}
