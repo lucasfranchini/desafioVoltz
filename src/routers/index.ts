@@ -5,7 +5,7 @@ const router = Router();
 
 router.use("/tools", toolsRouter);
 router.get("/", (req, res) => {
-  res.send({ name: "teste" });
+  res.send({ name: "tool" });
 });
 
 export default router;
